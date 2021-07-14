@@ -25,6 +25,7 @@ public class Program {
 		try {
 			conn = DB.getConnection();
 			
+			/*
 			st = conn.prepareStatement(
 					"INSERT INTO seller "
 					+ "(Name, Email, BirthDate, BaseSalary, DepartmentID) "
@@ -39,7 +40,11 @@ public class Program {
 			st.setDouble(4, 6000.0);
 			st.setInt(5, 3);
 			
+			*/
+			
 			// retorna um int st.executeUpdate();
+			
+			st = conn.prepareStatement("insert into department (Name) values ('D1'),('D2')", Statement.RETURN_GENERATED_KEYS);
 			
 			int rowsAffected = st.executeUpdate();
 						
@@ -65,9 +70,7 @@ public class Program {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		catch (ParseException e) {
-			e.printStackTrace();
-		}
+		
 		finally {
 			DB.closeStatement(st);
 			DB.closeConection();
